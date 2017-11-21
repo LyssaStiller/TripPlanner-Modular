@@ -1,4 +1,4 @@
-const mapbox = require("mapbox-gl");
+const mapboxgl = require("mapbox-gl");
 
 const iconURLs = {
     hotels: "http://i.imgur.com/D9574Cu.png",
@@ -7,35 +7,41 @@ const iconURLs = {
 };
 
 const buildMarker = (type, coords) => {
-    if (type === 'hotel') {
-        
-        const hotelMarker = document.createElement("div"); // Create a new, detached DIV
-        hotelMarker.style.width = "32px";
-        hotelMarker.style.height = "39px";
-        hotelMarker.style.backgroundImage = iconURLs[hotels];
-        new mapbox.Marker(hotelMarker).setLngLat([coords]).addTo(map);
-        return hotelMarker;
-    } else if (type === 'restaurant') {
 
-        const restaurantMarker = document.createElement("div"); // Create a new, detached DIV
-        restaurantMarker.style.width = "32px";
-        restaurantMarker.style.height = "39px";
-        restaurantMarker.style.backgroundImage = iconURLs[restaurants];
-        new mapbox.Marker(restaurantMarker).setLngLat([coords]).addTo(map);
-        return restaurantMarker;
-    } else if (type === 'activitiy') {
-
-        const activityMarker = document.createElement("div"); // Create a new, detached DIV
-      	activityMarker.style.width = "32px";
-        activityMarker.style.height = "39px";
-        activityMarker.style.backgroundImage = iconURLs[restaurants];
-        new mapbox.Marker(activityMarker).setLngLat([coords]).addTo(map);
-        return activitityMarker;
-
-    }
-
-
+        const markerDomEl = document.createElement("div"); 
+        markerDomEl.style.width = "32px";
+        markerDomEl.style.height = "39px";
+        markerDomEl.style.backgroundImage = `url(${iconURLs[type]})`;
+        return new mapboxgl.Marker(markerDomEl).setLngLat(coords)
 
 };
+
+
+
+
+
+// if (type === 'hotels') {
+    
+//     const hotelMarker = document.createElement("div"); 
+//     hotelMarker.style.width = "32px";
+//     hotelMarker.style.height = "39px";
+//     hotelMarker.style.backgroundImage = iconURLs[hotels];
+//     return new mapboxgl.Marker(hotelMarker).setLngLat(coords)
+// } else if (type === 'restaurants') {
+
+//     const restaurantMarker = document.createElement("div"); 
+//     restaurantMarker.style.width = "32px";
+//     restaurantMarker.style.height = "39px";
+//     restaurantMarker.style.backgroundImage = iconURLs[restaurants];
+//     return new mapboxgl.Marker(restaurantMarker).setLngLat(coords)
+// } else if (type === 'activity') {
+
+//     const activityMarker = document.createElement("div"); 
+//       activityMarker.style.width = "32px";
+//     activityMarker.style.height = "39px";
+//     activityMarker.style.backgroundImage = iconURLs[restaurants];
+//     return new mapboxgl.Marker(activityMarker).setLngLat(coords)
+
+// }
 
 module.exports = buildMarker;
